@@ -1,9 +1,16 @@
 import { Prisma } from "@prisma/client";
+import { CreateUserDto } from "./dto/create-user.dto";
 import { UserService } from "./user.service";
 export declare class UserController {
     private readonly userService;
     constructor(userService: UserService);
-    create(user: Prisma.UserCreateInput): Prisma.Prisma__UserClient<import(".prisma/client").User>;
+    create(createUserDto: CreateUserDto): Prisma.Prisma__UserClient<import(".prisma/client").User & {
+        profiles: {
+            nickname: string;
+            image: string;
+            id: number;
+        }[];
+    }>;
     findAll(): import(".prisma/client").PrismaPromise<(import(".prisma/client").User & {
         profiles: import(".prisma/client").Profile[];
     })[]>;

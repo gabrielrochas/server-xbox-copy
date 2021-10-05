@@ -27,6 +27,7 @@ model Profile {
   image String @db.VarChar(256)
   user User @relation(fields: [userId], references:[id])
   userId Int
+  games Game[]
 }
 
 model Game {
@@ -35,9 +36,10 @@ model Game {
   cover String @db.VarChar(256)
   description String @db.VarChar(256)
   launchYear String @db.Char(4)
-  imdbRating Decimal @db.Decimal(2, 2)
+  imdbRating Decimal @db.Decimal(2, 1)
   youtubeUrl String @db.VarChar(256)
   gamePlayUrl String @db.VarChar(256)
+  profiles Profile[]
   genres Genre[]
 }
 

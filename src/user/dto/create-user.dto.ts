@@ -7,7 +7,6 @@ import {
   IsString,
   ValidateNested,
 } from "class-validator";
-import { CreateGameDto } from "src/games/dto/create-game.dto";
 import { CreateProfileDto } from "src/profiles/dto/create-profile.dto";
 import { User } from "../entities/user.entity";
 
@@ -41,10 +40,4 @@ export class CreateUserDto extends User {
   @IsArray()
   @IsOptional()
   profiles: CreateProfileDto[];
-
-  @ValidateNested({ each: true })
-  @Type(() => CreateGameDto)
-  @IsArray()
-  @IsOptional()
-  games: CreateGameDto[];
 }

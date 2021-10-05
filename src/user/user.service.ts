@@ -1,3 +1,4 @@
+import { CreateUserDto } from "./dto/create-user.dto";
 import { Prisma } from "@prisma/client";
 import { Injectable } from "@nestjs/common";
 import { PrismaService } from "src/prisma/prisma.service";
@@ -6,8 +7,27 @@ import { PrismaService } from "src/prisma/prisma.service";
 export class UserService {
   constructor(private readonly prisma: PrismaService) {}
 
-  create(user: Prisma.UserCreateInput) {
-    return this.prisma.user.create({ data: user });
+  private readonly _include = {
+    profiles: {
+      select: {
+        id: false,
+        nickname: true,
+        image: true,
+      },
+    },
+  };
+
+  create(dto: CreateUserDto) {
+    const data: Prisma.UserCreateInput = {
+      ...dto,
+      profiles: {
+        create: dto.profiles,
+      },
+    };
+    return this.prisma.user.create({
+      data,
+      include: this._include,
+    });
   }
 
   findAll() {

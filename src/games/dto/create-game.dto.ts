@@ -28,20 +28,17 @@ export class CreateGameDto extends Game {
   launchYear: string;
 
   @IsDecimal()
-  @IsOptional()
-  imdbRating?: number | null;
+  imdbRating: number;
 
   @IsString()
-  @IsOptional()
-  youtubeUrl?: string | null;
+  youtubeUrl: string;
 
   @IsString()
-  @IsOptional()
-  gamePlayUrl: string | null;
+  gamePlayUrl: string;
 
   @ValidateNested({ each: true })
   @Type(() => CreateGenreDto)
   @IsArray()
   @IsOptional()
-  genres: CreateGenreDto[];
+  genres?: CreateGenreDto[];
 }

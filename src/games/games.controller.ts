@@ -7,16 +7,17 @@ import {
   Param,
   Delete,
 } from "@nestjs/common";
-import { Prisma } from "@prisma/client";
 import { GamesService } from "./games.service";
+import { CreateGameDto } from "./dto/create-game.dto";
+import { UpdateGameDto } from "./dto/update-game.dto";
 
 @Controller("games")
 export class GamesController {
   constructor(private readonly gamesService: GamesService) {}
 
   @Post()
-  create(@Body() game: Prisma.GameCreateInput) {
-    return this.gamesService.create(game);
+  create(@Body() createGameDto: CreateGameDto) {
+    return this.gamesService.create(createGameDto);
   }
 
   @Get()
@@ -30,8 +31,8 @@ export class GamesController {
   }
 
   @Patch(":id")
-  update(@Param("id") id: string, @Body() game: Prisma.GameUpdateInput) {
-    return this.gamesService.update(+id, game);
+  update(@Param("id") id: string, @Body() updateGameDto: UpdateGameDto) {
+    return this.gamesService.update(+id, updateGameDto);
   }
 
   @Delete(":id")

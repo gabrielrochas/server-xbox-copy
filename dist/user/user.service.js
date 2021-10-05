@@ -15,9 +15,24 @@ const prisma_service_1 = require("../prisma/prisma.service");
 let UserService = class UserService {
     constructor(prisma) {
         this.prisma = prisma;
+        this._include = {
+            profiles: {
+                select: {
+                    id: false,
+                    nickname: true,
+                    image: true,
+                },
+            },
+        };
     }
-    create(user) {
-        return this.prisma.user.create({ data: user });
+    create(dto) {
+        const data = Object.assign(Object.assign({}, dto), { profiles: {
+                create: dto.profiles,
+            } });
+        return this.prisma.user.create({
+            data,
+            include: this._include,
+        });
     }
     findAll() {
         return this.prisma.user.findMany({

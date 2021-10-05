@@ -1,4 +1,3 @@
-import { Game } from "src/games/entities/game.entity";
 import { Profile } from "src/profiles/entities/profile.entity";
 
 export class User {
@@ -10,5 +9,4 @@ export class User {
   cpf: string;
   admin: boolean;
   profiles: Profile[];
-  games: Game[];
 }
