@@ -2,7 +2,7 @@ import { Prisma } from "@prisma/client";
 import { Injectable } from "@nestjs/common";
 import { PrismaService } from "src/prisma/prisma.service";
 import { CreateGameDto } from "./dto/create-game.dto";
-import { UpdateGameDto } from "./dto/update-game.dto";
+// import { UpdateGameDto } from "./dto/update-game.dto";
 
 @Injectable()
 export class GamesService {
@@ -44,7 +44,7 @@ export class GamesService {
     });
   }
 
-  update(id: number, data: UpdateGameDto) {
+  update(id: number, data: Prisma.GameUpdateInput) {
     return this.prisma.game.update({
       where: { id },
       data,

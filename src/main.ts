@@ -5,7 +5,7 @@ import { AppModule } from "./app.module";
 async function bootstrap() {
   const app = await NestFactory.create(AppModule, {
     cors: {
-      origin: "http://localhost:3001",
+      origin: "http://localhost:3000",
     },
   });
   app.useGlobalPipes(
@@ -15,6 +15,6 @@ async function bootstrap() {
       forbidNonWhitelisted: true,
     }),
   ),
-    await app.listen(3000);
+    await app.listen(8008);
 }
 bootstrap();

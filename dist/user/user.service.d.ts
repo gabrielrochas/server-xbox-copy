@@ -7,9 +7,9 @@ export declare class UserService {
     private readonly _include;
     create(dto: CreateUserDto): Prisma.Prisma__UserClient<import(".prisma/client").User & {
         profiles: {
+            id: number;
             nickname: string;
             image: string;
-            id: number;
         }[];
     }>;
     findAll(): import(".prisma/client").PrismaPromise<(import(".prisma/client").User & {

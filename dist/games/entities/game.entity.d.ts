@@ -1,6 +1,6 @@
 import { Genres } from "src/genres/entities/genres.entity";
 export declare class Game {
-    id?: number;
+    id?: never;
     title: string;
     cover: string;
     description: string;
