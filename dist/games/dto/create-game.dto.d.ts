@@ -1,4 +1,3 @@
-import { CreateGenreDto } from "src/genres/dto/create-genre.dto";
 import { Game } from "../entities/game.entity";
 export declare class CreateGameDto extends Game {
     title: string;
@@ -8,5 +7,4 @@ export declare class CreateGameDto extends Game {
     imdbRating: number;
     youtubeUrl: string;
     gamePlayUrl: string;
-    genres?: CreateGenreDto[];
 }

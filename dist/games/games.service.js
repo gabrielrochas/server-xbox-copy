@@ -9,57 +9,33 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.GameService = void 0;
+exports.GamesService = void 0;
 const common_1 = require("@nestjs/common");
 const prisma_service_1 = require("../prisma/prisma.service");
-let GameService = class GameService {
+let GamesService = class GamesService {
     constructor(prisma) {
         this.prisma = prisma;
-        this._include = {
-            genres: {
-                select: {
-                    id: false,
-                    genre: true,
-                },
-            },
-        };
     }
     create(dto) {
-        const data = Object.assign(Object.assign({}, dto), { genres: {
-                create: dto.genres,
-            } });
-        return this.prisma.game.create({
-            data,
-            include: this._include,
-        });
+        const data = Object.assign({}, dto);
+        return this.prisma.game.create({ data });
     }
     findAll() {
-        return this.prisma.game.findMany({
-            include: this._include,
-        });
+        return this.prisma.game.findMany();
     }
     findOne(id) {
-        return this.prisma.game.findUnique({
-            where: { id },
-            include: this._include,
-        });
+        return this.prisma.game.findUnique({ where: { id } });
     }
     update(id, data) {
-        return this.prisma.game.update({
-            where: { id },
-            data,
-            include: this._include,
-        });
+        return this.prisma.game.update({ where: { id }, data });
     }
     remove(id) {
-        return this.prisma.game.delete({
-            where: { id }
-        });
+        return this.prisma.game.delete({ where: { id } });
     }
 };
-GameService = __decorate([
+GamesService = __decorate([
     (0, common_1.Injectable)(),
     __metadata("design:paramtypes", [prisma_service_1.PrismaService])
-], GameService);
-exports.GameService = GameService;
-//# sourceMappingURL=game.service.js.map
+], GamesService);
+exports.GamesService = GamesService;
+//# sourceMappingURL=games.service.js.map

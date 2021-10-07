@@ -1,7 +1,6 @@
-import { Genres } from "src/genres/entities/genres.entity";
+import { Game } from "../entities/game.entity";
 
-export class Game {
-  id?: number;
+export class CreateGameDto extends Game {
   title: string;
   cover: string;
   description: string;
@@ -9,5 +8,4 @@ export class Game {
   imdbRating: number;
   youtubeUrl: string;
   gamePlayUrl: string;
-  genres?: Genres[];
 }

@@ -1,6 +1,4 @@
-import { Genres } from "src/genres/entities/genres.entity";
 export declare class Game {
-    id?: number;
     title: string;
     cover: string;
     description: string;
@@ -8,5 +6,4 @@ export declare class Game {
     imdbRating: number;
     youtubeUrl: string;
     gamePlayUrl: string;
-    genres?: Genres[];
 }
