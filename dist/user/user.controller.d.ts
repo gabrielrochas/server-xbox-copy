@@ -6,30 +6,30 @@ export declare class UserController {
     constructor(userService: UserService);
     create(createUserDto: CreateUserDto): import(".prisma/client").Prisma.Prisma__UserClient<import(".prisma/client").User & {
         profiles: {
-            id: number;
             nickname: string;
             image: string;
+            id: number;
         }[];
     }>;
     findAll(): import(".prisma/client").PrismaPromise<(import(".prisma/client").User & {
         profiles: {
-            id: number;
             nickname: string;
             image: string;
+            id: number;
         }[];
     })[]>;
     findOne(id: number): import(".prisma/client").Prisma.Prisma__UserClient<import(".prisma/client").User & {
         profiles: {
-            id: number;
             nickname: string;
             image: string;
+            id: number;
         }[];
     }>;
     update(id: number, updateUserDto: UpdateUserDto): import(".prisma/client").Prisma.Prisma__UserClient<import(".prisma/client").User & {
         profiles: {
-            id: number;
             nickname: string;
             image: string;
+            id: number;
         }[];
     }>;
     remove(id: number): import(".prisma/client").Prisma.Prisma__UserClient<import(".prisma/client").User>;
