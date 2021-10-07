@@ -36,19 +36,20 @@ let UserService = class UserService {
     }
     findAll() {
         return this.prisma.user.findMany({
-            include: { profiles: true },
+            include: this._include,
         });
     }
     findOne(id) {
         return this.prisma.user.findUnique({
             where: { id },
-            include: { profiles: true },
+            include: this._include,
         });
     }
-    update(id, user) {
+    update(id, data) {
         return this.prisma.user.update({
             where: { id },
-            data: user,
+            data,
+            include: this._include,
         });
     }
     remove(id) {

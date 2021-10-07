@@ -12,8 +12,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.CreateUserDto = void 0;
 const class_transformer_1 = require("class-transformer");
 const class_validator_1 = require("class-validator");
-const create_profile_dto_1 = require("../../profiles/dto/create-profile.dto");
 const user_entity_1 = require("../entities/user.entity");
+const create_profile_dto_1 = require("../../profiles/dto/create-profile.dto");
 class CreateUserDto extends user_entity_1.User {
 }
 __decorate([

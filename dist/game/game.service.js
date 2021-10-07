@@ -9,10 +9,10 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.GamesService = void 0;
+exports.GameService = void 0;
 const common_1 = require("@nestjs/common");
 const prisma_service_1 = require("../prisma/prisma.service");
-let GamesService = class GamesService {
+let GameService = class GameService {
     constructor(prisma) {
         this.prisma = prisma;
         this._include = {
@@ -53,13 +53,13 @@ let GamesService = class GamesService {
     }
     remove(id) {
         return this.prisma.game.delete({
-            where: { id },
+            where: { id }
         });
     }
 };
-GamesService = __decorate([
+GameService = __decorate([
     (0, common_1.Injectable)(),
     __metadata("design:paramtypes", [prisma_service_1.PrismaService])
-], GamesService);
-exports.GamesService = GamesService;
-//# sourceMappingURL=games.service.js.map
+], GameService);
+exports.GameService = GameService;
+//# sourceMappingURL=game.service.js.map

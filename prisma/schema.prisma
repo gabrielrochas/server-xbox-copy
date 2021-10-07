@@ -25,7 +25,7 @@ model Profile {
   id        Int @default(autoincrement()) @id
   nickname  String @db.VarChar(18)
   image     String @db.VarChar(256)
-  user      User @relation(fields: [userId], references:[id])
+  user      User @relation(fields: [userId], references:[id], onDelete: Cascade, onUpdate: Cascade)
   userId    Int
   games     Game[]
 }

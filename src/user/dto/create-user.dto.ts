@@ -7,8 +7,8 @@ import {
   IsString,
   ValidateNested,
 } from "class-validator";
-import { CreateProfileDto } from "src/profiles/dto/create-profile.dto";
 import { User } from "../entities/user.entity";
+import { CreateProfileDto } from "src/profiles/dto/create-profile.dto";
 
 export class CreateUserDto extends User {
   @IsString()
@@ -39,5 +39,5 @@ export class CreateUserDto extends User {
   @Type(() => CreateProfileDto)
   @IsArray()
   @IsOptional()
-  profiles: CreateProfileDto[];
+  profiles?: CreateProfileDto[];
 }

@@ -1,8 +1,8 @@
 import { Type } from "class-transformer";
 import {
   IsArray,
-  IsDecimal,
   IsNotEmpty,
+  IsNumber,
   IsOptional,
   IsString,
   ValidateNested,
@@ -27,13 +27,16 @@ export class CreateGameDto extends Game {
   @IsNotEmpty()
   launchYear: string;
 
-  @IsDecimal()
+  @IsNumber()
+  @IsNotEmpty()
   imdbRating: number;
 
   @IsString()
+  @IsNotEmpty()
   youtubeUrl: string;
 
   @IsString()
+  @IsNotEmpty()
   gamePlayUrl: string;
 
   @ValidateNested({ each: true })

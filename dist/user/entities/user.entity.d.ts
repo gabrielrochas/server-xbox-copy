@@ -7,5 +7,5 @@ export declare class User {
     password: string;
     cpf: string;
     admin: boolean;
-    profiles: Profile[];
+    profiles?: Profile[];
 }

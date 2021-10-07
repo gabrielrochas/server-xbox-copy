@@ -14,9 +14,9 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.UserController = void 0;
 const common_1 = require("@nestjs/common");
-const client_1 = require("@prisma/client");
-const create_user_dto_1 = require("./dto/create-user.dto");
 const user_service_1 = require("./user.service");
+const create_user_dto_1 = require("./dto/create-user.dto");
+const update_user_dto_1 = require("./dto/update-user.dto");
 let UserController = class UserController {
     constructor(userService) {
         this.userService = userService;
@@ -28,13 +28,13 @@ let UserController = class UserController {
         return this.userService.findAll();
     }
     findOne(id) {
-        return this.userService.findOne(+id);
+        return this.userService.findOne(id);
     }
-    update(id, user) {
-        return this.userService.update(+id, user);
+    update(id, updateUserDto) {
+        return this.userService.update(id, updateUserDto);
     }
     remove(id) {
-        return this.userService.remove(+id);
+        return this.userService.remove(id);
     }
 };
 __decorate([
@@ -54,7 +54,7 @@ __decorate([
     (0, common_1.Get)(":id"),
     __param(0, (0, common_1.Param)("id")),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String]),
+    __metadata("design:paramtypes", [Number]),
     __metadata("design:returntype", void 0)
 ], UserController.prototype, "findOne", null);
 __decorate([
@@ -62,14 +62,14 @@ __decorate([
     __param(0, (0, common_1.Param)("id")),
     __param(1, (0, common_1.Body)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String, Object]),
+    __metadata("design:paramtypes", [Number, update_user_dto_1.UpdateUserDto]),
     __metadata("design:returntype", void 0)
 ], UserController.prototype, "update", null);
 __decorate([
     (0, common_1.Delete)(":id"),
     __param(0, (0, common_1.Param)("id")),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String]),
+    __metadata("design:paramtypes", [Number]),
     __metadata("design:returntype", void 0)
 ], UserController.prototype, "remove", null);
 UserController = __decorate([

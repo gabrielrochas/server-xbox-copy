@@ -37,15 +37,18 @@ __decorate([
     __metadata("design:type", String)
 ], CreateGameDto.prototype, "launchYear", void 0);
 __decorate([
-    (0, class_validator_1.IsDecimal)(),
+    (0, class_validator_1.IsNumber)(),
+    (0, class_validator_1.IsNotEmpty)(),
     __metadata("design:type", Number)
 ], CreateGameDto.prototype, "imdbRating", void 0);
 __decorate([
     (0, class_validator_1.IsString)(),
+    (0, class_validator_1.IsNotEmpty)(),
     __metadata("design:type", String)
 ], CreateGameDto.prototype, "youtubeUrl", void 0);
 __decorate([
     (0, class_validator_1.IsString)(),
+    (0, class_validator_1.IsNotEmpty)(),
     __metadata("design:type", String)
 ], CreateGameDto.prototype, "gamePlayUrl", void 0);
 __decorate([
