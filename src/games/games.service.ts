@@ -24,7 +24,10 @@ export class GamesService {
         create: dto.genres,
       },
     };
-    return this.prisma.game.create({ data, include: this._include });
+    return this.prisma.game.create({
+      data,
+      include: this._include,
+    });
   }
 
   findAll() {
@@ -39,10 +42,13 @@ export class GamesService {
   }
 
   update(id: number, dto: UpdateGameDto) {
+    const genresIds = dto.genresIds;
+    delete dto.genresIds;
+
     const data: Prisma.GameUpdateInput = {
       ...dto,
       genres: {
-        create: dto.genres,
+        connect: genresIds.map((genreId) => ({ id: genreId })),
       },
     };
 

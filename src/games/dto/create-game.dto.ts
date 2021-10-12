@@ -1,14 +1,11 @@
-import { Type } from "class-transformer";
 import {
+  ArrayNotEmpty,
   IsArray,
+  IsInt,
   IsNotEmpty,
   IsNumber,
-  IsOptional,
   IsString,
-  ValidateNested,
 } from "class-validator";
-import { CreateGenreDto } from "src/genres/dto/create-genre.dto";
-import { Genre } from "src/genres/entities/genres.entity";
 import { Game } from "../entities/game.entity";
 
 export class CreateGameDto extends Game {
@@ -40,9 +37,8 @@ export class CreateGameDto extends Game {
   @IsNotEmpty()
   gamePlayUrl: string;
 
-  @ValidateNested({ each: true })
-  @Type(() => CreateGenreDto)
-  @IsOptional()
+  @IsInt({ each: true })
+  @ArrayNotEmpty()
   @IsArray()
-  genres: Genre[];
+  genresIds: number[];
 }

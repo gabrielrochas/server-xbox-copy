@@ -5,7 +5,7 @@ import { UpdateGenreDto } from "./dto/update-genre.dto";
 
 @Injectable()
 export class GenresService {
-  constructor(private readonly prisma: PrismaService, private readonly) {}
+  constructor(private readonly prisma: PrismaService) {}
 
   create(data: CreateGenreDto) {
     return this.prisma.genre.create({ data });
