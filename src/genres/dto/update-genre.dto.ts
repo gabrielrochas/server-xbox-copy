@@ -1,7 +1,4 @@
-import { IsInt } from "class-validator";
+import { PartialType } from "@nestjs/mapped-types";
 import { CreateGenreDto } from "./create-genre.dto";
 
-export class UpdateGenreDto extends CreateGenreDto {
-  @IsInt()
-  id: number;
-}
+export class UpdateGenreDto extends PartialType(CreateGenreDto) {}
