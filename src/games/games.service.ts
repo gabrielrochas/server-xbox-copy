@@ -8,20 +8,16 @@ import { UpdateGameDto } from "./dto/update-game.dto";
 export class GamesService {
   constructor(private readonly prisma: PrismaService) {}
 
-  private readonly _include = {
-    genres: {
-      select: {
-        id: false,
-        genre: true,
-      },
-    },
+  private readonly _include: Prisma.GameInclude = {
+    genres: true,
+    profiles: true,
   };
 
   create(dto: CreateGameDto) {
     const data: Prisma.GameCreateInput = {
       ...dto,
       genres: {
-        create: dto.genres,
+        connect: dto.genres,
       },
     };
     return this.prisma.game.create({
