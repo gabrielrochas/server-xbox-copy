@@ -1,9 +1,9 @@
-import { Prisma } from "@prisma/client";
-import { Injectable } from "@nestjs/common";
-import { PrismaService } from "src/prisma/prisma.service";
-import { CreateUserDto } from "./dto/create-user.dto";
-import { UpdateUserDto } from "./dto/update-user.dto";
-
+import { Prisma } from '@prisma/client';
+import { Injectable } from '@nestjs/common';
+import { PrismaService } from 'src/prisma/prisma.service';
+import { CreateUserDto } from './dto/create-user.dto';
+import { UpdateUserDto } from './dto/update-user.dto';
+import * as bcrypt from 'bcrypt';
 @Injectable()
 export class UserService {
   constructor(private readonly prisma: PrismaService) {}
@@ -18,17 +18,21 @@ export class UserService {
     },
   };
 
-  create(dto: CreateUserDto) {
+  async create(dto: CreateUserDto) {
     const data: Prisma.UserCreateInput = {
       ...dto,
       profiles: {
         create: dto.profiles,
       },
+      password: await bcrypt.hash(dto.password, 10),
     };
-    return this.prisma.user.create({
-      data,
-      include: this._include,
-    });
+
+    const cratedUser = await this.prisma.user.create({ data });
+
+    return {
+      cratedUser,
+      password: undefined,
+    };
   }
 
   findAll() {
@@ -37,11 +41,15 @@ export class UserService {
     });
   }
 
-  findOne(id: number) {
+  findById(id: number) {
     return this.prisma.user.findUnique({
       where: { id },
       include: this._include,
     });
+  }
+
+  findByEmail(email: string) {
+    return this.prisma.user.findUnique({ where: { email } });
   }
 
   update(id: number, data: UpdateUserDto) {
