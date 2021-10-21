@@ -4,9 +4,10 @@ import {
   IsInt,
   IsNotEmpty,
   IsNumber,
+  IsOptional,
   IsString,
-} from "class-validator";
-import { Game } from "../entities/game.entity";
+} from 'class-validator';
+import { Game } from '../entities/game.entity';
 
 export class CreateGameDto extends Game {
   @IsString()
@@ -40,5 +41,12 @@ export class CreateGameDto extends Game {
   @IsInt({ each: true })
   @ArrayNotEmpty()
   @IsArray()
-  genresIds: number[];
+  @IsOptional()
+  genresIds?: number[];
+
+  @IsInt({ each: true })
+  @ArrayNotEmpty()
+  @IsArray()
+  @IsOptional()
+  profilesIds?: number[];
 }
