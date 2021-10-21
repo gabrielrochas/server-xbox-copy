@@ -6,7 +6,7 @@ import { UnauthorizedInterceptor } from './interceptors/unauthorized.interceptor
 async function bootstrap() {
   const app = await NestFactory.create(AppModule, {
     cors: {
-      origin: 'http://localhost:3000',
+      origin: process.env.ORIGIN_REQUEST || 'http://localhost:3000',
     },
   });
   app.useGlobalPipes(
