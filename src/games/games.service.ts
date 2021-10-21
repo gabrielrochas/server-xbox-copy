@@ -1,8 +1,8 @@
-import { Prisma } from "@prisma/client";
-import { Injectable } from "@nestjs/common";
-import { PrismaService } from "src/prisma/prisma.service";
-import { CreateGameDto } from "./dto/create-game.dto";
-import { UpdateGameDto } from "./dto/update-game.dto";
+import { Prisma } from '@prisma/client';
+import { Injectable } from '@nestjs/common';
+import { PrismaService } from 'src/prisma/prisma.service';
+import { CreateGameDto } from './dto/create-game.dto';
+import { UpdateGameDto } from './dto/update-game.dto';
 
 @Injectable()
 export class GamesService {
@@ -14,10 +14,19 @@ export class GamesService {
   };
 
   create(dto: CreateGameDto) {
+    const genresIds = dto.genresIds;
+    delete dto.genresIds;
+
+    const profilesIds = dto.profilesIds;
+    delete dto.profilesIds;
+
     const data: Prisma.GameCreateInput = {
       ...dto,
       genres: {
-        connect: dto.genres,
+        connect: genresIds?.map((genreId) => ({ id: genreId })) || [],
+      },
+      profiles: {
+        connect: profilesIds?.map((profileId) => ({ id: profileId })) || [],
       },
     };
     return this.prisma.game.create({
@@ -41,10 +50,16 @@ export class GamesService {
     const genresIds = dto.genresIds;
     delete dto.genresIds;
 
+    const profilesIds = dto.profilesIds;
+    delete dto.profilesIds;
+
     const data: Prisma.GameUpdateInput = {
       ...dto,
       genres: {
-        connect: genresIds.map((genreId) => ({ id: genreId })),
+        set: genresIds?.map((genreId) => ({ id: genreId })) || [],
+      },
+      profiles: {
+        connect: profilesIds?.map((profileId) => ({ id: profileId })) || [],
       },
     };
 
