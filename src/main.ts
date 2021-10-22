@@ -7,7 +7,7 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule, {
     cors: {
       origin: [
-        'https://xenodochial-blackwell-ba5539.netlify.app/',
+        'https://xenodochial-blackwell-ba5539.netlify.app',
         'http://localhost:3000',
       ],
     },
