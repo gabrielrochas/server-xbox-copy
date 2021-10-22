@@ -32,8 +32,8 @@ export class CreateUserDto extends User {
   cpf: string;
 
   @IsBoolean()
-  @IsNotEmpty()
-  admin: boolean;
+  @IsOptional()
+  admin?: boolean;
 
   @ValidateNested({ each: true })
   @Type(() => CreateProfileDto)

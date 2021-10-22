@@ -7,6 +7,6 @@ export class User {
   email: string;
   password: string;
   cpf: string;
-  admin: boolean;
+  admin?: boolean;
   profiles?: Profile[];
 }
