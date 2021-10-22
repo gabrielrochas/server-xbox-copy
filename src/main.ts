@@ -6,10 +6,7 @@ import { UnauthorizedInterceptor } from './interceptors/unauthorized.interceptor
 async function bootstrap() {
   const app = await NestFactory.create(AppModule, {
     cors: {
-      origin: [
-        'https://xenodochial-blackwell-ba5539.netlify.app',
-        'http://localhost:3000',
-      ],
+      origin: [process.env.ORIGIN_REQUEST, 'http://localhost:3000'],
     },
   });
   app.useGlobalPipes(
